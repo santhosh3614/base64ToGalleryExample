@@ -1,0 +1,7 @@
+{
+  "appId": "com.example.app",
+  "appName": "testdownload",
+  "bundledWebRuntime": false,
+  "webDir": "www",
+  "windowsAndroidStudioPath": "H:\\Android Studio\\bin\\studio64.exe"
+}

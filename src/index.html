@@ -29,6 +29,30 @@
 
   <link href="build/main.css" rel="stylesheet">
 
+  <script>
+    function injectScript(src){
+      return new Promise((resolve, reject)=>{
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = src;
+          script.addEventListener('load',resolve);
+          script.addEventListener('error',()=> reject('Error loading script.'));
+          script.addEventListener('abort',()=> reject('script loading aborted.'));
+      });
+    }
+
+    function loadIonic(){
+       injectScript("build/polyfills.js")
+        .then(function (script){
+            return injectScript("build/vendor.js");
+        }).then(function (script){
+            return injectScript("build/main.js");
+        }).then(function (script){
+            return injectScript("cordova.js");
+        })
+    }
+  </script>
+
 </head>
 <body>
 

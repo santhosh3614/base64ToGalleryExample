@@ -6,9 +6,20 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding no-bounce>
+    <div #fixedContainer ion-fixed>
+        <ion-row>
+          <ion-col *ngFor="let color of colors" [style.background]="color" class="color-block" tappable (click)="selectColor(color)"></ion-col>
+        </ion-row>
+     
+        <ion-row radio-group [(ngModel)]="selectedColor">
+          <ion-col *ngFor="let color of colors" text-center>
+            <ion-radio [value]="color"></ion-radio>
+          </ion-col>
+        </ion-row>
+     
+        <canvas #imageCanvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
+     
+        <button ion-button full (click)="saveCanvasImage()">Save Image</button>
+      </div>
 </ion-content>
